@@ -26,4 +26,4 @@
 
 <http://partake.in/events/2e985699-5b67-4948-a1b4-1810b652971e>
 
-5月25日までの課題：[スタックとキュー](HW001-StacksAndQueues.md)
+5月25日までの課題：[スタックとキュー](https://github.com/yuzutechnology/Community-Okabe2011/blob/master/HW001-StacksAndQueues.md)
