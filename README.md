@@ -27,3 +27,10 @@
 <http://partake.in/events/2e985699-5b67-4948-a1b4-1810b652971e>
 
 5月25日までの課題：[スタックとキュー](https://github.com/yuzutechnology/Community-Okabe2011/blob/master/HW001-StacksAndQueues.md)
+
+第4回：2011年6月8日
+-------------------
+
+<http://partake.in/events/8ccdc151-b758-47af-9ff2-91216bd5d3c4>
+
+6月8日までの課題：[「number」と「rpncalc」](https://github.com/yuzutechnology/Community-Okabe2011/blob/master/HW002-NumberAndRPNCalc.md)
