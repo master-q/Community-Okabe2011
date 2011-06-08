@@ -25,6 +25,21 @@ calcState "+" = calcStateOpe (+)
 calcState "-" = calcStateOpe (-)
 calcState "*" = calcStateOpe (*)
 calcState "/" = calcStateOpe (/)
+calcState "clear" = do
+  put $ S.empty
+  return []
+calcState "drop" = do
+  x <- get
+  put $ S.tail x
+  return []
+calcState "swap" = do
+  x <- get
+  let h1 = S.head x
+      t1 = S.tail x
+      h2 = S.head t1
+      t2 = S.tail t1
+  put $ S.cons h2 $ S.cons h1 $ t2
+  return []
 calcState "display" = do
   x <- get
   return $ showState' x -- 今のスタックを表示
