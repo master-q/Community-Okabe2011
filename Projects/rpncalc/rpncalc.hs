@@ -14,34 +14,32 @@ calcStateOpe f = do
       h2 = S.head t1
       t2 = S.tail t1
   put $ S.cons (show $ f (toFloat h2) (toFloat h1)) t2
-  return [] -- とくに使わない。。。
+  return [] -- 表示なし
+
+showState' :: S.SimpleStack String -> [String]
+showState' ss | S.isEmpty ss = []
+              | otherwise = S.head ss:(showState' $ S.tail ss)
 
 calcState :: String -> State (S.SimpleStack String) [String]
 calcState "+" = calcStateOpe (+)
 calcState "-" = calcStateOpe (-)
 calcState "*" = calcStateOpe (*)
 calcState "/" = calcStateOpe (/)
-calcState "display" = return [] -- とくに使わない。。。
+calcState "display" = do
+  x <- get
+  return $ showState' x -- 今のスタックを表示
 calcState l = do
   x <- get
   put $ S.cons (show (toFloat l)) x
-  return [] -- とくに使わない。。。
+  return [] -- 表示なし
 
-showState' :: S.SimpleStack String -> [String]
-showState' ss | S.isEmpty ss = []
-              | otherwise = S.head ss:(showState' $ S.tail ss)
-
-showState :: State (S.SimpleStack String) [String]
-showState = do
-  x <- get
-  return $ showState' x
-
-rcalcState :: [String] -> State (S.SimpleStack String) [String]
-rcalcState (x:xs) = calcState x >> rcalcState xs
-rcalcState [] = showState
+rcalcState :: [String] -> [String] -> State (S.SimpleStack String) [String]
+rcalcState (x:xs) r = do r1 <- calcState x
+                         rcalcState xs (r ++ r1)
+rcalcState [] r = return r
 
 rpnCalc :: [String] -> [String]
-rpnCalc s = evalState (rcalcState s) S.empty
+rpnCalc s = evalState (rcalcState s []) S.empty
 
 main :: IO ()
 main = do
