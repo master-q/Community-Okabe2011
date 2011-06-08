@@ -21,9 +21,10 @@ calcState "+" = calcStateOpe (+)
 calcState "-" = calcStateOpe (-)
 calcState "*" = calcStateOpe (*)
 calcState "/" = calcStateOpe (/)
+calcState "display" = return [] -- とくに使わない。。。
 calcState l = do
   x <- get
-  put $ S.cons l x
+  put $ S.cons (show (toFloat l)) x
   return [] -- とくに使わない。。。
 
 showState' :: S.SimpleStack String -> [String]
